@@ -1,0 +1,27 @@
+name: client-tests-workflow
+
+on:
+  push:
+    branches:
+      - dev
+  pull_request:
+    branches:
+      - dev
+
+jobs:
+  test-client:
+    name: Tests client (bloquant)
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out code
+        uses: actions/checkout@v2
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: 18
+
+      - name: Test échoué volontairement
+        run: |
+          echo "❌ Ce test est censé échouer"
+          exit 1
