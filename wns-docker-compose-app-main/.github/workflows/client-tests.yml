@@ -10,10 +10,18 @@ on:
 
 jobs:
   test-client:
+    name: Tests client (bloquant)
     runs-on: ubuntu-latest
     steps:
       - name: Check out code
         uses: actions/checkout@v2
-      - name: Goto client and run tests
-        run: cd client && npm i && npm test
 
+      - name: Setup Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: 18
+
+      - name: Test échoué volontairement
+        run: |
+          echo "❌ Ce test est censé échouer"
+          exit 1
